@@ -1,0 +1,34 @@
+Voting application :
+
+what?
+->User can signup.
+->User can log in.
+->signup and login using unique adhaar authentication
+->User can see list of candidates .
+->User can  vote a specific candidate .
+->User can view result(list of candidates and vote counts in sorted way).
+->User can view his/her profile and can also update password.
+->one admin who can manage the data bases, candidates/electors database in particular and is not allowed to vote.
+
+
+Routes:
+
+user authentication:
+  /signup: Post: to create new user
+  /login:Post: log into existing user
+
+user profile:
+  /profile: Get: get users profile
+  /profile/password: Put: update password
+
+Admin candidates management:
+  /candidates : Post: add a new candidate
+  /candidates/:candidateId:put: update existing candidate details
+  /candidates/:candidateId:delete: delete existing candidate details
+
+Voting :
+  /candidates:get: get list of candidates
+  /candidates/:candidateId/vote: post: vote for a candidate
+
+vote counts:
+  /vote/counts:get: List of candidates sorted by their votes
