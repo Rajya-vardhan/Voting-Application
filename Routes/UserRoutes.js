@@ -6,6 +6,10 @@ const { jwtAuthMiddleware, genToken } = require("./../jwt");
 router.post("/Signup", async (req, res) => {
   try {
     const data = req.body;
+    const temp=User.find({role:"admin"})
+    if(temp && data.role=="admin"){
+        return res.status(400).json({message:"admin already exists"})
+    }
     const newUser = new User(data);
     const SavedUser = await newUser.save();
     console.log("data saved");
@@ -51,6 +55,7 @@ router.get("/profile", jwtAuthMiddleware, async (req, res) => {
   try {
     const data = req.user;
     const id = data.userData.id;
+   
     const user = await User.findById(id);
     res.status(200).json(user);
   } catch (err) {
